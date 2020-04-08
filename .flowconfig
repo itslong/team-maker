@@ -1,0 +1,17 @@
+[ignore]
+.*/node_modules/.*
+.*/build/.*
+.*\serviceWorker\.js
+.*\setupTests\.js
+.*\.test\.js
+.*\index\.js
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
