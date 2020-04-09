@@ -1,7 +1,9 @@
 /* @flow */
 import * as React from 'react';
+import { connect } from 'react-redux';
 
 import { Button } from './common';
+import { toggleModal } from '../actions';
 
 
 const controlBarStyle = {
@@ -12,10 +14,11 @@ const controlBarStyle = {
   justifyContent: 'space-evenly',
 };
 
-const ControlBar = (): React.MixedElement => {
+const ConnectedControlBar = (props): React.MixedElement => {
   const buttonClicked = (e: SyntheticEvent<HTMLButtonElement>): void => {
-    // TODO: wire to update store state.
-    console.log('the event: ', e.currentTarget);
+    // event will be used to control the type of modal opening.
+    const { displayModal, toggleModal} = props;
+    toggleModal(!displayModal);
   };
 
   const TeamConfig: React.MixedElement = 
@@ -54,5 +57,15 @@ const ControlBar = (): React.MixedElement => {
     </div>
   );
 };
+
+const mapStateToProps = (state) => {
+  const { displayModal } = state;
+
+  return {
+    displayModal
+  };
+};
+
+const ControlBar = connect(mapStateToProps, { toggleModal })(ConnectedControlBar);
 
 export default ControlBar;
