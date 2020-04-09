@@ -17,7 +17,7 @@ type ModalProps = {
 const Modal = (props: ModalProps): MixedElement => {
   const { id, className, headerText, action, children } = props;
 
-  const closeModal: React.MixedElement = 
+  const closeModal: MixedElement = 
     <Button 
       id={'close-modal'}
       className={'close-modal'}
