@@ -7,23 +7,26 @@ type State = {
   displayModal: boolean
 };
 
+type loadingAction = { type: LOADING, isLoading: boolean };
+type modalAction = { type: TOGGLE_MODAL, displayModal: boolean }; 
+
 type Action = 
-  | { type: LOADING, isLoading: boolean }
-  | { type: TOGGLE_MODAL, displayModal: boolean}
+  | loadingAction
+  | modalAction
 
 let initialState: State = {
   isLoading: false,
   displayModal: false
 };
 
-const isLoading = (state: State, action: Action) => {
+const isLoading = (state: State, action: Action): loadingAction => {
   return {
     ...state,
     isLoading: true,
   };
 };
 
-const handleModal = (state: State, action: Action) => {
+const handleModal = (state: State, action: Action): modalAction => {
   return {
     ...state,
     displayModal: action.payload
