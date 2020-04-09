@@ -1,15 +1,17 @@
 /* @flow */
 import React, { useState } from 'react';
+import type { MixedElement } from 'react';
 
 import { Modal } from './common';
 
 
-const TeamControls = () => {
-  const [displayModal, toggleModal] = useState(false)
+const TeamControls = (): MixedElement => {
+  // TODO: may move modal state to redux
+  const [displayModal, toggleModal] = useState(true);
 
-  const handleModal = () => toggleModal(!displayModal)
+  const handleModal = (): void => toggleModal(!displayModal);
 
-  const modalElem = displayModal ? <Modal
+  const modalElem: MixedElement | null = displayModal ? <Modal
       id={'team-config'}
       className={'team-config'}
       headerText={'Configure Your Teams'}
@@ -17,12 +19,12 @@ const TeamControls = () => {
     >
       <p>hello world</p>
       <p>hello again world</p>
-    </Modal> : '';
+    </Modal> : null;
 
   return (
-    <div>
+    <>
       {modalElem}
-    </div>
+    </>
   );
 };
 
