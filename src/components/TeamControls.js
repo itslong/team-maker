@@ -1,15 +1,18 @@
 /* @flow */
-import React, { useState } from 'react';
+import React from 'react';
 import type { MixedElement } from 'react';
+import { connect } from 'react-redux';
 
 import { Modal } from './common';
+import { toggleModal } from '../actions';
 
 
-const TeamControls = (): MixedElement => {
-  // TODO: may move modal state to redux
-  const [displayModal, toggleModal] = useState(true);
+const ConnectedTeamControls = (props): MixedElement => {
+  const { displayModal, toggleModal } = props;
 
-  const handleModal = (): void => toggleModal(!displayModal);
+  const handleModal = (): void => {
+    toggleModal(!displayModal);
+  };
 
   const modalElem: MixedElement | null = displayModal ? <Modal
       id={'team-config'}
@@ -27,5 +30,15 @@ const TeamControls = (): MixedElement => {
     </>
   );
 };
+
+const mapStateToProps = (state) => {
+  const { displayModal } = state;
+
+  return {
+    displayModal
+  };
+};
+
+const TeamControls = connect(mapStateToProps, { toggleModal })(ConnectedTeamControls);
 
 export default TeamControls;

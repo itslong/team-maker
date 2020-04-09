@@ -1,9 +1,10 @@
 
 
 const LOADING = 'LOADING';
-
+const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
 export {
-  LOADING
+  LOADING,
+  TOGGLE_MODAL
 };
 
