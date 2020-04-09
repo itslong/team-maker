@@ -7,7 +7,7 @@
 .*\index\.js
 
 [include]
-./src/
+./src/.*
 
 [libs]
 
