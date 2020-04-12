@@ -8,7 +8,12 @@ import { toggleModal } from '../actions';
 import TeamConfigForm from './TeamConfigForm';
 
 
-const ConnectedTeamControls = (props): MixedElement => {
+type TeamControlsProps = {
+  displayModal: boolean,
+  toggleModal: Function
+};
+
+const ConnectedTeamControls = (props: TeamControlsProps): MixedElement => {
   const { displayModal, toggleModal } = props;
 
   const handleModal = (): void => {

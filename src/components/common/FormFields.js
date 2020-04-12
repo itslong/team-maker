@@ -15,13 +15,12 @@ type FieldsProp = {
   style?: string,
   labelName?: string,
   fieldError?: string,
-  minLength?: string
 };
 
 const FormFields = ({ fields }: {fields: Array<FieldsProp>}): MixedElement  => {
 
-  const formFields = fields.map((field, index): MixedElement | void => {
-    const { id, type, name, onChange, value, fieldError, placeholder, style, labelName, minLength } = field;
+  const formFields = fields.map((field, index): MixedElement | null => {
+    const { id, type, name, onChange, value, fieldError, placeholder, style, labelName } = field;
 
     if (type === 'input') {
       return (
@@ -40,6 +39,7 @@ const FormFields = ({ fields }: {fields: Array<FieldsProp>}): MixedElement  => {
       );
     }
 
+    return null;
   });
 
   return (
