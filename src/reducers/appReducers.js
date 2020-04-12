@@ -1,5 +1,5 @@
 /* @flow */
-import { LOADING, TOGGLE_MODAL } from '../constants/action-types';
+import type { ModalAction, LoadingAction } from '../actions';
 
 
 type State = {
@@ -7,46 +7,32 @@ type State = {
   displayModal: boolean
 };
 
-type loadingAction = { type: LOADING, isLoading: boolean };
-type modalAction = { type: TOGGLE_MODAL, displayModal: boolean }; 
-
 type Action = 
-  | loadingAction
-  | modalAction
+  | LoadingAction
+  | ModalAction
 
 let initialState: State = {
   isLoading: false,
   displayModal: false
 };
 
-const isLoading = (state: State, action: Action): loadingAction => {
-  return {
-    ...state,
-    isLoading: true,
-  };
-};
-
-const handleModal = (state: State, action: Action): modalAction => {
-  return {
-    ...state,
-    displayModal: action.payload
-  };
-};
-
 const appReducers = (state: State = initialState, action: Action) => {
   switch(action.type) {
-    case LOADING: {
-      return isLoading(state, action);
-    }
+    case 'LOADING':
+      return {
+        ...state,
+        isLoading: action.isLoading
+      }
 
-    case TOGGLE_MODAL: {
-      return handleModal(state, action);
-    }
+    case 'TOGGLE_MODAL':
+      return {
+        ...state,
+        displayModal: action.displayModal
+      }
 
     default:
       return state;
   }
-
 };
 
 export default appReducers;

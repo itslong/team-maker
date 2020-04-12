@@ -5,9 +5,15 @@ import { connect } from 'react-redux';
 
 import { Modal } from './common';
 import { toggleModal } from '../actions';
+import TeamConfigForm from './TeamConfigForm';
 
 
-const ConnectedTeamControls = (props): MixedElement => {
+type TeamControlsProps = {
+  displayModal: boolean,
+  toggleModal: Function
+};
+
+const ConnectedTeamControls = (props: TeamControlsProps): MixedElement => {
   const { displayModal, toggleModal } = props;
 
   const handleModal = (): void => {
@@ -20,8 +26,7 @@ const ConnectedTeamControls = (props): MixedElement => {
       headerText={'Configure Your Teams'}
       action={handleModal}
     >
-      <p>hello world</p>
-      <p>hello again world</p>
+      <TeamConfigForm />
     </Modal> : null;
 
   return (

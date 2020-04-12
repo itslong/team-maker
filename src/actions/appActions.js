@@ -1,9 +1,8 @@
 /* @flow */
-import { TOGGLE_MODAL } from '../constants/action-types';
+import { TOGGLE_MODAL, LOADING } from '../constants/action-types';
 
-type modalAction = { type: TOGGLE_MODAL, payload: boolean };
-type Action = 
-  | modalAction;
+type ModalAction = { type: 'TOGGLE_MODAL', displayModal: boolean };
+type LoadingAction = { type: 'LOADING', isLoading: boolean };
 
 
 const toggleModal = (modalState: boolean): dispatch => {
@@ -12,14 +11,32 @@ const toggleModal = (modalState: boolean): dispatch => {
   };
 };
 
+const toggleLoading = (loadingState: boolean) => {
+  return dispatch => {
+    dispatch(setLoading(loadingState));
+  };
+}
 
-const displayModal = (payload): Action => {
+
+const displayModal = (value: boolean): ModalAction => {
   return {
     type: TOGGLE_MODAL,
-    payload
+    displayModal: value
+  };
+};
+
+const setLoading = (value: boolean): LoadingAction => {
+  return {
+    type: LOADING,
+    isLoading: value
   };
 };
 
 export {
-  toggleModal
+  toggleModal,
+  toggleLoading
+};
+export type {
+  ModalAction,
+  LoadingAction
 };
