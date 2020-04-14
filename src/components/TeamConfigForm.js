@@ -41,21 +41,11 @@ const TeamConfigForm = (props: TeamSettings) => {
     dispatch(toggleModal());
   };
 
-  // add value and onChange properties to each field. value will read values from (component) formState.
-  const formFieldsWithExtraProps = fields.map((field, index) => {
-    let fieldExtraProps = {
-      ...field,
-      onChange: handleChange,
-      value: formState[field.name]
-    };
-    return fieldExtraProps;
-  });
-
 
   return (
     <div className={'form-container'}>
       <form>
-        <FormFields fields={formFieldsWithExtraProps} />
+        <FormFields fields={fields} handler={handleChange} formState={formState} />
         <div>
           <Button
             id={'done'}
