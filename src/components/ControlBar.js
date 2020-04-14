@@ -6,15 +6,7 @@ import { Button } from './common';
 import { toggleModal } from '../actions';
 
 
-const controlBarStyle = {
-  display: 'flex',
-  width: '100%',
-  background: 'black',
-  height: '30%',
-  justifyContent: 'space-evenly',
-};
-
-const ControlBar = (): React.MixedElement => {
+function ControlBar (): React.MixedElement {
   const modalState = useSelector(state => state.displayModal);
   const dispatch = useDispatch();
 
@@ -25,6 +17,14 @@ const ControlBar = (): React.MixedElement => {
       dispatch(toggleModal(!modalState));
     }
     // TODO: instantiate other types of modals based on button.name.
+  };
+
+  const controlBarStyle = {
+    display: 'flex',
+    width: '100%',
+    background: 'black',
+    height: '30%',
+    justifyContent: 'space-evenly',
   };
 
   const TeamConfig: React.MixedElement = 

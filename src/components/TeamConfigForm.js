@@ -7,7 +7,7 @@ import { updateTeamSettings, toggleModal } from '../actions';
 import type { TeamSettings } from '../actions'; 
 
 
-const TeamConfigForm = (props: TeamSettings) => {
+function TeamConfigForm(props: TeamSettings): React.MixedElement {
   /* 
     First time render, get values from store (if any).
 

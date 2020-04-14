@@ -1,6 +1,7 @@
 /* @flow */
 import { TOGGLE_MODAL, LOADING, UPDATE_TEAM_SETTINGS } from '../constants/action-types';
 
+
 type ModalAction = { type: 'TOGGLE_MODAL', displayModal: boolean };
 type LoadingAction = { type: 'LOADING', isLoading: boolean };
 
@@ -12,19 +13,19 @@ type TeamSettings = {
 type TeamSettingsAction = { type: 'UPDATE_TEAM_SETTINGS', teamSettings: TeamSettings };
 
 
-const toggleModal = (modalState: boolean) => {
+function toggleModal(modalState: boolean) {
   return dispatch => {
     dispatch(displayModal(modalState));
   };
-};
+}
 
-const toggleLoading = (loadingState: boolean) => {
+function toggleLoading(loadingState: boolean) {
   return dispatch => {
     dispatch(setLoading(loadingState));
   };
 }
 
-const updateTeamSettings = (settings: TeamSettings) => {
+function updateTeamSettings(settings: TeamSettings) {
   const { totalTeams, totalPlayers, playersPerTeam } = settings;
 
   const validatedSettings = {
@@ -36,24 +37,24 @@ const updateTeamSettings = (settings: TeamSettings) => {
   return dispatch => {
     dispatch(setTeamSettings(validatedSettings));
   };
-};
+}
 
 
-const displayModal = (value: boolean): ModalAction => {
+function displayModal(value: boolean): ModalAction {
   return {
     type: TOGGLE_MODAL,
     displayModal: value
   };
 };
 
-const setLoading = (value: boolean): LoadingAction => {
+function setLoading(value: boolean): LoadingAction {
   return {
     type: LOADING,
     isLoading: value
   };
 };
 
-const setTeamSettings = (obj: TeamSettings): TeamSettingsAction => {
+function setTeamSettings(obj: TeamSettings): TeamSettingsAction {
   return {
     type: UPDATE_TEAM_SETTINGS,
     teamSettings: obj

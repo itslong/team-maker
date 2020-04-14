@@ -2,6 +2,7 @@
 import React from 'react';
 import type { MixedElement } from 'react';
 
+
 type ButtonProps = {
   id: string,
   className?: string,
@@ -11,8 +12,7 @@ type ButtonProps = {
   action: void
 };
 
-
-const Button = (props: ButtonProps): MixedElement => {
+function Button(props: ButtonProps): MixedElement {
   const { id, className, name, title, style, action } = props;
 
   return (

@@ -15,7 +15,7 @@ type InputProps = {
   fieldError?: string
 };
 
-const Input = (props: InputProps) => {
+function Input(props: InputProps): MixedElement {
   const { id, name, type, value, onChange, placeholder, style, labelName, fieldError } = props;
 
   const displayFieldError: MixedElement | null = fieldError ?
@@ -39,5 +39,7 @@ const Input = (props: InputProps) => {
     </div>
   );
 };
+
+
 
 export default Input;

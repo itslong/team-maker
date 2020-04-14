@@ -23,7 +23,7 @@ let initialState: State = {
   }
 };
 
-const appReducers = (state: State = initialState, action: Action) => {
+function appReducers(state: State = initialState, action: Action) {
   switch(action.type) {
     case 'LOADING':
       return {

@@ -26,7 +26,7 @@ type FormFieldsProp = {
   formState: Object
 };
 
-const FormFields = ({ fields, handler, formState }: FormFieldsProp): MixedElement  => {
+function FormFields({ fields, handler, formState }: FormFieldsProp): MixedElement {
   const formFields = fields.map((field, index): MixedElement | null => {
     const { id, type, name, fieldError, placeholder, style, labelName } = field;
 
