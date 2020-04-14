@@ -1,6 +1,6 @@
 /* @flow */
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Button } from './common';
 import { toggleModal } from '../actions';
@@ -14,11 +14,17 @@ const controlBarStyle = {
   justifyContent: 'space-evenly',
 };
 
-const ConnectedControlBar = (props): React.MixedElement => {
+const ControlBar = (): React.MixedElement => {
+  const modalState = useSelector(state => state.displayModal);
+  const dispatch = useDispatch();
+
   const buttonClicked = (e: SyntheticEvent<HTMLButtonElement>): void => {
-    // event will be used to control the type of modal opening.
-    const { displayModal, toggleModal} = props;
-    toggleModal(!displayModal);
+    const modalType: string = e.currentTarget.name;
+
+    if (modalType === 'teamConfig') {
+      dispatch(toggleModal(!modalState));
+    }
+    // TODO: instantiate other types of modals based on button.name.
   };
 
   const TeamConfig: React.MixedElement = 
@@ -58,14 +64,5 @@ const ConnectedControlBar = (props): React.MixedElement => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { displayModal } = state;
-
-  return {
-    displayModal
-  };
-};
-
-const ControlBar = connect(mapStateToProps, { toggleModal })(ConnectedControlBar);
 
 export default ControlBar;
