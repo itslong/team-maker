@@ -15,14 +15,22 @@ type FieldsProp = {
   style?: string,
   labelName?: string,
   fieldError?: string,
+  min?: string,
+  max?: string,
+  maxlength?: string
 };
 
-const FormFields = ({ fields }: {fields: Array<FieldsProp>}): MixedElement  => {
+type FormFieldsProp = {
+  fields: Array<FieldsProp>,
+  handler: Function,
+  formState: Object
+};
 
+const FormFields = ({ fields, handler, formState }: FormFieldsProp): MixedElement  => {
   const formFields = fields.map((field, index): MixedElement | null => {
-    const { id, type, name, onChange, value, fieldError, placeholder, style, labelName } = field;
+    const { id, type, name, fieldError, placeholder, style, labelName } = field;
 
-    if (type === 'input') {
+    if (type === 'text') {
       return (
         <Input
           id={id}
@@ -32,11 +40,33 @@ const FormFields = ({ fields }: {fields: Array<FieldsProp>}): MixedElement  => {
           labelName={labelName}
           placeholder={placeholder}
           style={style}
-          onChange={onChange}
-          value={value}
+          onChange={handler}
+          value={formState[field.name]}
           fieldError={fieldError}
         />
       );
+    }
+
+    if (type === 'number') {
+      const { min, max, maxlength } = field;
+
+      return (
+        <Input
+          id={id}
+          key={name}
+          type={type}
+          name={name}
+          labelName={labelName}
+          placeholder={placeholder}
+          style={style}
+          onChange={handler}
+          value={formState[field.name]}
+          fieldError={fieldError}
+          min={min}
+          max={max}
+          maxlength={maxlength}
+        />
+      )
     }
 
     return null;
