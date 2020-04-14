@@ -19,7 +19,7 @@ function Input(props: InputProps): MixedElement {
   const { id, name, type, value, onChange, placeholder, style, labelName, fieldError } = props;
 
   const displayFieldError: MixedElement | null = fieldError ?
-    <div className={'error'} style={{display: 'inline'}}>{fieldError}</div>
+    <div className="error" style={{display: "inline"}}>{fieldError}</div>
     : null;
 
   return (
@@ -27,7 +27,7 @@ function Input(props: InputProps): MixedElement {
       <label htmlFor={name}>{labelName}</label>
       <input
         id={id}
-        className={name || 'form-input'}
+        className={name || "form-input"}
         name={name}
         type={type}
         value={value}

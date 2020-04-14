@@ -17,9 +17,9 @@ function TeamControls(): MixedElement {
   };
 
   const modalElem: MixedElement | null = modalState ? <Modal
-      id={'team-config'}
-      className={'team-config'}
-      headerText={'Configure Your Teams'}
+      id="team-config"
+      className="team-config"
+      headerText="Configure Your Teams"
       action={handleModal}
     >
       <TeamConfigForm />

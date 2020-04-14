@@ -73,7 +73,7 @@ function FormFields({ fields, handler, formState }: FormFieldsProp): MixedElemen
   });
 
   return (
-    <div className='form-fields-container'>
+    <div className="form-fields-container">
       {formFields}
     </div>
   );

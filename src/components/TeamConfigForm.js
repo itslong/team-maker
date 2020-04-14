@@ -23,9 +23,9 @@ function TeamConfigForm(props: TeamSettings): React.MixedElement {
   // hook to update redux store without connect.
   const dispatch = useDispatch();
   const fields = [
-    {type: 'number', name: 'totalPlayers', labelName: 'How many players total?', min: 1, maxlength: 2},
-    {type: 'number', name: 'totalTeams', labelName: 'How many teams?', min: 1, maxlength: 2},
-    {type: 'number', name: 'playersPerTeam', labelName: 'How many players per team?', min: 1, maxlength: 2}
+    {type: "number", name: "totalPlayers", labelName: "How many players total?", min: 1, maxlength: 2},
+    {type: "number", name: "totalTeams", labelName: "How many teams?", min: 1, maxlength: 2},
+    {type: "number", name: "playersPerTeam", labelName: "How many players per team?", min: 1, maxlength: 2}
   ];
 
   const handleChange = (e) => {
@@ -43,13 +43,13 @@ function TeamConfigForm(props: TeamSettings): React.MixedElement {
 
 
   return (
-    <div className={'form-container'}>
+    <div className="form-container">
       <form>
         <FormFields fields={fields} handler={handleChange} formState={formState} />
         <div>
           <Button
-            id={'done'}
-            title={'Done'}
+            id="done"
+            title="Done"
             action={handleSubmit}
           />
         </div>
