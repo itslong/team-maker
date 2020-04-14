@@ -5,7 +5,7 @@ import { LOADING, TOGGLE_MODAL, UPDATE_TEAM_SETTINGS } from '../constants/action
 
 type State = {
   isLoading: boolean,
-  displayModal: boolean,
+  isModalDisplayed: boolean,
   teamSettings: TeamSettings
 };
 
@@ -16,7 +16,7 @@ type Action =
 
 let initialState: State = {
   isLoading: false,
-  displayModal: false,
+  isModalDisplayed: false,
   teamSettings: {
     totalPlayers: 0,
     totalTeams: 0,
@@ -35,7 +35,7 @@ function appReducers(state: State = initialState, action: Action) {
     case TOGGLE_MODAL:
       return {
         ...state,
-        displayModal: action.displayModal
+        isModalDisplayed: action.isModalDisplayed
       }
 
     case UPDATE_TEAM_SETTINGS:

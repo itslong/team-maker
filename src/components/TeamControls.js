@@ -9,14 +9,14 @@ import TeamConfigForm from './TeamConfigForm';
 
 
 function TeamControls(): MixedElement {
-  const modalState = useSelector(state => state.displayModal);
+  const isModalDisplayed = useSelector(state => state.isModalDisplayed);
   const dispatch = useDispatch();
 
   const handleModal = (): void => {
-    dispatch(toggleModal(!modalState));
+    dispatch(toggleModal(!isModalDisplayed));
   };
 
-  const modalElem: MixedElement | null = modalState ? <Modal
+  const modalElem: MixedElement | null = isModalDisplayed ? <Modal
       id="team-config"
       className="team-config"
       headerText="Configure Your Teams"

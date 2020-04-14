@@ -16,7 +16,8 @@ function TeamConfigForm(props: TeamSettings): React.MixedElement {
   */
   // from redux store.
   const teams = useSelector(state => state.teamSettings);
-  
+  const isModalDisplayed = useSelector(state => state.isModalDisplayed);
+
   // set form state.
   const [formState, setFormData] = useState(teams);
 
@@ -38,7 +39,7 @@ function TeamConfigForm(props: TeamSettings): React.MixedElement {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateTeamSettings(formState));
-    dispatch(toggleModal());
+    dispatch(toggleModal(!isModalDisplayed));
   };
 
 

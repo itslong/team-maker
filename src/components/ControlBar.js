@@ -7,14 +7,14 @@ import { toggleModal } from '../actions';
 
 
 function ControlBar (): React.MixedElement {
-  const modalState = useSelector(state => state.displayModal);
+  const isModalDisplayed = useSelector(state => state.isModalDisplayed);
   const dispatch = useDispatch();
 
   const buttonClicked = (e: SyntheticEvent<HTMLButtonElement>): void => {
     const modalType: string = e.currentTarget.name;
 
     if (modalType === "teamConfig") {
-      dispatch(toggleModal(!modalState));
+      dispatch(toggleModal(!isModalDisplayed));
     }
     // TODO: instantiate other types of modals based on button.name.
   };

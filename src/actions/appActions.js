@@ -2,7 +2,7 @@
 import { TOGGLE_MODAL, LOADING, UPDATE_TEAM_SETTINGS } from '../constants/action-types';
 
 
-type ModalAction = { type: typeof TOGGLE_MODAL, displayModal: boolean };
+type ModalAction = { type: typeof TOGGLE_MODAL, isModalDisplayed: boolean };
 type LoadingAction = { type: typeof LOADING, isLoading: boolean };
 
 type TeamSettings = {
@@ -43,7 +43,7 @@ function updateTeamSettings(settings: TeamSettings) {
 function displayModal(value: boolean): ModalAction {
   return {
     type: TOGGLE_MODAL,
-    displayModal: value
+    isModalDisplayed: value
   };
 };
 
