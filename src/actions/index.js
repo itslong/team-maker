@@ -1,2 +1,2 @@
-export { toggleModal } from './appActions';
-export type { ModalAction, LoadingAction } from './appActions';
+export { toggleModal, updateTeamSettings } from './appActions';
+export type { ModalAction, LoadingAction, TeamSettings } from './appActions';
