@@ -2,15 +2,15 @@
 import { TOGGLE_MODAL, LOADING, UPDATE_TEAM_SETTINGS } from '../constants/action-types';
 
 
-type ModalAction = { type: 'TOGGLE_MODAL', displayModal: boolean };
-type LoadingAction = { type: 'LOADING', isLoading: boolean };
+type ModalAction = { type: typeof TOGGLE_MODAL, displayModal: boolean };
+type LoadingAction = { type: typeof LOADING, isLoading: boolean };
 
 type TeamSettings = {
   totalPlayers: number,
   totalTeams: number,
   playersPerTeam: number
 };
-type TeamSettingsAction = { type: 'UPDATE_TEAM_SETTINGS', teamSettings: TeamSettings };
+type TeamSettingsAction = { type: UPDATE_TEAM_SETTINGS, teamSettings: TeamSettings };
 
 
 function toggleModal(modalState: boolean) {
