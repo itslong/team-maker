@@ -1,26 +1,22 @@
 /* @flow */
 import React from 'react';
 import type { MixedElement } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Modal } from './common';
 import { toggleModal } from '../actions';
 import TeamConfigForm from './TeamConfigForm';
 
 
-type TeamControlsProps = {
-  displayModal: boolean,
-  toggleModal: Function
-};
-
-const ConnectedTeamControls = (props: TeamControlsProps): MixedElement => {
-  const { displayModal, toggleModal } = props;
+const TeamControls = (): MixedElement => {
+  const modalState = useSelector(state => state.displayModal);
+  const dispatch = useDispatch();
 
   const handleModal = (): void => {
-    toggleModal(!displayModal);
+    dispatch(toggleModal(!modalState));
   };
 
-  const modalElem: MixedElement | null = displayModal ? <Modal
+  const modalElem: MixedElement | null = modalState ? <Modal
       id={'team-config'}
       className={'team-config'}
       headerText={'Configure Your Teams'}
@@ -35,15 +31,5 @@ const ConnectedTeamControls = (props: TeamControlsProps): MixedElement => {
     </>
   );
 };
-
-const mapStateToProps = (state) => {
-  const { displayModal } = state;
-
-  return {
-    displayModal
-  };
-};
-
-const TeamControls = connect(mapStateToProps, { toggleModal })(ConnectedTeamControls);
 
 export default TeamControls;
