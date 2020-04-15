@@ -7,7 +7,7 @@ import { toggleModal } from '../actions';
 
 
 function ControlBar (): React.MixedElement {
-  const isModalDisplayed = useSelector(state => state.isModalDisplayed);
+  const isModalDisplayed = useSelector(state => state.app.isModalDisplayed);
   const dispatch = useDispatch();
 
   const buttonClicked = (e: SyntheticEvent<HTMLButtonElement>): void => {
