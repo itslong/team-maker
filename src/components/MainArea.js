@@ -11,8 +11,8 @@ function MainArea() {
   return (
     <div className="MainArea-container">
       <PlayersArea />
+      <QueueArea />
       <TeamsArea />
-      <PlayersArea />
     </div>
   );
 }

@@ -15,8 +15,8 @@ function TeamConfigForm(props: TeamSettings): React.MixedElement {
     On submit, update store.
   */
   // from redux store.
-  const teams = useSelector(state => state.teamSettings);
-  const isModalDisplayed = useSelector(state => state.isModalDisplayed);
+  const teams = useSelector(state => state.app.teamSettings);
+  const isModalDisplayed = useSelector(state => state.app.isModalDisplayed);
 
   // set form state.
   const [formState, setFormData] = useState(teams);

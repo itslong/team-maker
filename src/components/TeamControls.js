@@ -9,7 +9,7 @@ import TeamConfigForm from './TeamConfigForm';
 
 
 function TeamControls(): MixedElement {
-  const isModalDisplayed = useSelector(state => state.isModalDisplayed);
+  const isModalDisplayed = useSelector(state => state.app.isModalDisplayed);
   const dispatch = useDispatch();
 
   const handleModal = (): void => {
