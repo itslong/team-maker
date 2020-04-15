@@ -1,10 +1,11 @@
 /* @flow */
 import type { ModalAction, LoadingAction, TeamSettings } from '../actions';
+import { LOADING, TOGGLE_MODAL, UPDATE_TEAM_SETTINGS } from '../constants/action-types';
 
 
 type State = {
   isLoading: boolean,
-  displayModal: boolean,
+  isModalDisplayed: boolean,
   teamSettings: TeamSettings
 };
 
@@ -15,7 +16,7 @@ type Action =
 
 let initialState: State = {
   isLoading: false,
-  displayModal: false,
+  isModalDisplayed: false,
   teamSettings: {
     totalPlayers: 0,
     totalTeams: 0,
@@ -23,21 +24,21 @@ let initialState: State = {
   }
 };
 
-const appReducers = (state: State = initialState, action: Action) => {
+function appReducers(state: State = initialState, action: Action) {
   switch(action.type) {
-    case 'LOADING':
+    case LOADING:
       return {
         ...state,
         isLoading: action.isLoading
       }
 
-    case 'TOGGLE_MODAL':
+    case TOGGLE_MODAL:
       return {
         ...state,
-        displayModal: action.displayModal
+        isModalDisplayed: action.isModalDisplayed
       }
 
-    case 'UPDATE_TEAM_SETTINGS':
+    case UPDATE_TEAM_SETTINGS:
       return {
         ...state,
         teamSettings: action.teamSettings

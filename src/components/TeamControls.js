@@ -8,18 +8,18 @@ import { toggleModal } from '../actions';
 import TeamConfigForm from './TeamConfigForm';
 
 
-const TeamControls = (): MixedElement => {
-  const modalState = useSelector(state => state.displayModal);
+function TeamControls(): MixedElement {
+  const isModalDisplayed = useSelector(state => state.isModalDisplayed);
   const dispatch = useDispatch();
 
   const handleModal = (): void => {
-    dispatch(toggleModal(!modalState));
+    dispatch(toggleModal(!isModalDisplayed));
   };
 
-  const modalElem: MixedElement | null = modalState ? <Modal
-      id={'team-config'}
-      className={'team-config'}
-      headerText={'Configure Your Teams'}
+  const modalElem: MixedElement | null = isModalDisplayed ? <Modal
+      id="team-config"
+      className="team-config"
+      headerText="Configure Your Teams"
       action={handleModal}
     >
       <TeamConfigForm />
@@ -30,6 +30,6 @@ const TeamControls = (): MixedElement => {
       {modalElem}
     </>
   );
-};
+}
 
 export default TeamControls;

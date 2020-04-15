@@ -14,29 +14,29 @@ type ModalProps = {
   children?: MixedElement
 };
 
-const Modal = (props: ModalProps): MixedElement => {
+function Modal(props: ModalProps): MixedElement {
   const { id, className, headerText, action, children } = props;
 
   const closeModal: MixedElement = 
     <Button 
-      id={'close-modal'}
-      className={'close-modal'}
-      name={'closeTeamConfigModal'}
-      title={'X'}
+      id="close-modal"
+      className="close-modal"
+      name="closeTeamConfigModal"
+      title="X"
       action={action}
     />;
 
 
   return (
     <div className={`Modal-container-outer ${className}`}>
-      <div id={id} className={'Modal-container-inner'}>
-        <div className={'Modal-header'}>
+      <div id={id} className="Modal-container-inner">
+        <div className="Modal-header">
           <span>{headerText}</span>
 
-          <div className={'Modal-header-button'}>{closeModal}</div>
+          <div className="Modal-header-button">{closeModal}</div>
         </div>
 
-        <div className={'Modal-body'}>
+        <div className="Modal-body">
           {children}
         </div>
 
@@ -44,5 +44,7 @@ const Modal = (props: ModalProps): MixedElement => {
     </div>
   );
 };
+
+
 
 export default Modal;

@@ -7,7 +7,7 @@ import { updateTeamSettings, toggleModal } from '../actions';
 import type { TeamSettings } from '../actions'; 
 
 
-const TeamConfigForm = (props: TeamSettings) => {
+function TeamConfigForm(props: TeamSettings): React.MixedElement {
   /* 
     First time render, get values from store (if any).
 
@@ -16,16 +16,17 @@ const TeamConfigForm = (props: TeamSettings) => {
   */
   // from redux store.
   const teams = useSelector(state => state.teamSettings);
-  
+  const isModalDisplayed = useSelector(state => state.isModalDisplayed);
+
   // set form state.
   const [formState, setFormData] = useState(teams);
 
   // hook to update redux store without connect.
   const dispatch = useDispatch();
   const fields = [
-    {type: 'number', name: 'totalPlayers', labelName: 'How many players total?', min: 1, maxlength: 2},
-    {type: 'number', name: 'totalTeams', labelName: 'How many teams?', min: 1, maxlength: 2},
-    {type: 'number', name: 'playersPerTeam', labelName: 'How many players per team?', min: 1, maxlength: 2}
+    {type: "number", name: "totalPlayers", labelName: "How many players total?", min: 1, maxlength: 2},
+    {type: "number", name: "totalTeams", labelName: "How many teams?", min: 1, maxlength: 2},
+    {type: "number", name: "playersPerTeam", labelName: "How many players per team?", min: 1, maxlength: 2}
   ];
 
   const handleChange = (e) => {
@@ -38,18 +39,18 @@ const TeamConfigForm = (props: TeamSettings) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateTeamSettings(formState));
-    dispatch(toggleModal());
+    dispatch(toggleModal(!isModalDisplayed));
   };
 
 
   return (
-    <div className={'form-container'}>
+    <div className="form-container">
       <form>
         <FormFields fields={fields} handler={handleChange} formState={formState} />
         <div>
           <Button
-            id={'done'}
-            title={'Done'}
+            id="done"
+            title="Done"
             action={handleSubmit}
           />
         </div>
