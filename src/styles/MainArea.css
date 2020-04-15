@@ -1,0 +1,13 @@
+.MainArea-container {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: auto auto auto;
+}
+
+.MainArea-container > div {
+  border-width: 1px;
+  border-color: black;
+  border-left-style: solid;
+  border-right-style: solid;
+}
