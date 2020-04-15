@@ -4,13 +4,14 @@ import './App.css';
 
 import ControlBar from './components/ControlBar';
 import TeamControls from './components/TeamControls';
+import MainArea from './components/MainArea';
 
 
 function App() {
   return (
     <div className="App">
       <ControlBar />
-      hello world
+      <MainArea />
       <TeamControls />
     </div>
   );
