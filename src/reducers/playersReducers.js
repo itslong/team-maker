@@ -7,13 +7,8 @@ import {
   INITIALIZE_PLAYERS_LIST
 } from '../constants/action-types';
 import { CountIncrementAction, CountDecrementAction, UpdatePlayersListAction } from '../actions';
+import type { Player } from '../actions';
 
-
-type Player = {
-  id: number,
-  username: string,
-  rating?: number
-};
 
 type State = {
   playersCount: number,

@@ -1,5 +1,6 @@
 /* @flow */
 import React, { useState } from 'react';
+import type { MixedElement } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { FormFields, Button } from './common';
@@ -7,7 +8,7 @@ import { updateTeamSettings, toggleModal } from '../actions';
 import type { TeamSettings } from '../actions'; 
 
 
-function TeamConfigForm(props: TeamSettings): React.MixedElement {
+function TeamConfigForm(props: TeamSettings): MixedElement {
   /* 
     First time render, get values from store (if any).
 

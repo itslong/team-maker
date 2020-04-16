@@ -17,17 +17,26 @@ type Action =
   | CountIncrementAction
   | UpdatePlayersListAction;
 
+type Player = {
+  id: number,
+  username: string,
+  rating?: number
+};
 
-function updatePlayersList(id): Action {
+type PlayersList = {
+  id: Player
+};
+
+function updatePlayersList(id: number): Action {
   return {
     type: UPDATE_PLAYERS_LIST,
     playerId: id
   };
 }
 
-function initializePlayersList(total): Action {
+function initializePlayersList(total: number): Action {
   const createdUsers = generateUsers(total);
-  const users = createdUsers.reduce((obj, currItem) => {
+  const users = createdUsers.reduce((obj, currItem): PlayersList => {
     obj[currItem.id] = currItem;
     return obj;
   }, {});
@@ -59,5 +68,7 @@ export {
 export type {
   CountIncrementAction,
   CountDecrementAction,
-  UpdatePlayersListAction
+  UpdatePlayersListAction,
+  Player,
+  PlayersList
 };
