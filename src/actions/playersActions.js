@@ -20,7 +20,8 @@ type Action =
 
 function updatePlayersList(id): Action {
   return {
-    type: UPDATE_PLAYERS_LIST
+    type: UPDATE_PLAYERS_LIST,
+    playerId: id
   };
 }
 

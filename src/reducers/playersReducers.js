@@ -50,10 +50,18 @@ function playersReducers(state: State = initialState, action: Action): State {
       }
 
     case INITIALIZE_PLAYERS_LIST:
-    case UPDATE_PLAYERS_LIST:
       return {
         ...state,
         playersList: action.playersList
+      }
+
+    case UPDATE_PLAYERS_LIST:
+      const playerId = parseInt(action.playerId);
+      const { [playerId]: _, ...remainder } = state.playersList;
+
+      return {
+        ...state,
+        playersList: remainder
       }
 
     case UPDATE_TEAM_SETTINGS:
