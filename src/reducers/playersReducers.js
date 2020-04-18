@@ -71,3 +71,4 @@ function playersReducers(state: State = initialState, action: Action): State {
 }
 
 export default playersReducers;
+export type { Player };
