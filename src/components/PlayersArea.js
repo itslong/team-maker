@@ -21,6 +21,10 @@ function PlayersArea(): MixedElement {
     dispatch(updatePlayersList(playerId));
   };
 
+  if(totalPlayers === 0 && playersCount === 0) {
+    return <div>Use Configurations to set the player numbers.</div>
+  }
+
   return (
     <div>
       <p>Players: {playersCount}</p>
@@ -29,8 +33,7 @@ function PlayersArea(): MixedElement {
           players={playersList}
           handlePlayerOnClick={updatePlayer}
         />
-        : totalPlayers > 0 ? 'No players remaining.'
-        : 'Use Configurations to set the number of players.'
+        : 'No players remaining.'
       }
     </div>
   );

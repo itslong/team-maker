@@ -36,9 +36,9 @@ function updatePlayersList(id: number): Action {
 
 function initializePlayersList(total: number): Action {
   const createdUsers = generateUsers(total);
-  const users = createdUsers.reduce((obj, currItem): PlayersList => {
-    obj[currItem.id] = currItem;
-    return obj;
+  const users = createdUsers.reduce((usersById, currUser): PlayersList => {
+    usersById[currUser.id] = currUser;
+    return usersById;
   }, {});
 
   return {

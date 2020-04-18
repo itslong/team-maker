@@ -10,16 +10,12 @@ type PlayersListProp = {
   handlePlayerOnClick: Function
 };
 
-type PlayerItem = [string, Player];
-
 function PlayersList({ players, handlePlayerOnClick }: PlayersListProp): MixedElement {
   return (
       <ul onClick={handlePlayerOnClick} style={{ "listStyleType": "none", "display": "inline" }}>
-        {Object.entries(players).map((item: PlayerItem) => {
-          const itemId = item[1].id;
-          const username = item[1].username;
+        {Object.values(players).map(({id, username}: Player) => {
           return (
-            <li key={(itemId + username).toString()} id={itemId}>{username}</li>
+            <li key={`${id + username}`} id={id}>{username}</li>
           );
         })}
       </ul>

@@ -7,18 +7,9 @@ function generateUsers(total, hasRating=false) {
     username: 
   }
   */
-  let users = [];
-  while(total > 0) {
-    let user = {
-      id: total,
-      username: 'user-' + total.toString()
-    };
-    users.push(user);
-    total--;
-  }
-  return users;
+  return [...Array(total + 1).keys()].splice(1).map(num => {
+    return {id: num, username: `user-${num}`}
+  })
 }
 
-export {
-  generateUsers
-};
+export { generateUsers };
