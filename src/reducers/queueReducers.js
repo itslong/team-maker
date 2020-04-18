@@ -1,5 +1,5 @@
 /* @flow */
-import type { Player } from './playersReducers';
+import type { Player } from './lobbyReducers';
 import {
   UPDATE_QUEUE_LIST,
   RETURN_PLAYER_TO_LOBBY,

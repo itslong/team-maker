@@ -27,7 +27,7 @@ let initialState: State = {
   playersList: {},
 };
 
-function playersReducers(state: State = initialState, action: Action): State {
+function lobbyReducers(state: State = initialState, action: Action): State {
   /* 
     Keep track of player state as players leave and enter the queue, or exiting the queue.
   */
@@ -70,5 +70,5 @@ function playersReducers(state: State = initialState, action: Action): State {
   }
 }
 
-export default playersReducers;
+export default lobbyReducers;
 export type { Player };
