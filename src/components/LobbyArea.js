@@ -7,10 +7,10 @@ import { playersCountDecrement, updatePlayersList } from '../actions';
 import PlayersList from './PlayersList';
 
 
-function PlayersArea(): MixedElement {
+function LobbyArea(): MixedElement {
   const totalPlayers = useSelector(state => state.app.teamSettings.totalPlayers);
-  const playersCount = useSelector(state => state.players.playersCount);
-  const playersList = useSelector(state => state.players.playersList);
+  const playersCount = useSelector(state => state.lobby.playersCount);
+  const playersList = useSelector(state => state.lobby.playersList);
 
   const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ function PlayersArea(): MixedElement {
   };
 
   if(totalPlayers === 0 && playersCount === 0) {
-    return <div>Use Configurations to set the player numbers.</div>
+    return <div><p>Use Configurations to set the player numbers.</p></div>
   }
 
   return (
@@ -39,4 +39,4 @@ function PlayersArea(): MixedElement {
   );
 }
 
-export default PlayersArea;
+export default LobbyArea;

@@ -1,6 +1,6 @@
 /* @flow */
 import { TOGGLE_MODAL, LOADING, UPDATE_TEAM_SETTINGS } from '../constants/action-types';
-import { initializePlayersList } from './playersActions';
+import { initializePlayersList } from './lobbyActions';
 
 
 type ModalAction = { type: typeof TOGGLE_MODAL, isModalDisplayed: boolean };
