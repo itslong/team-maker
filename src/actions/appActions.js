@@ -1,5 +1,6 @@
 /* @flow */
 import { TOGGLE_MODAL, LOADING, UPDATE_TEAM_SETTINGS } from '../constants/action-types';
+import { initializePlayersList } from './playersActions';
 
 
 type ModalAction = { type: typeof TOGGLE_MODAL, isModalDisplayed: boolean };
@@ -27,15 +28,17 @@ function toggleLoading(loadingState: boolean) {
 
 function updateTeamSettings(settings: TeamSettings) {
   const { totalTeams, totalPlayers, playersPerTeam } = settings;
+  const numPlayers = parseInt(totalPlayers);
 
   const validatedSettings = {
-    totalPlayers: parseInt(totalPlayers),
+    totalPlayers: numPlayers,
     totalTeams: parseInt(totalTeams),
     playersPerTeam: parseInt(playersPerTeam)
-  }
+  };
 
   return dispatch => {
     dispatch(setTeamSettings(validatedSettings));
+    dispatch(initializePlayersList(numPlayers));
   };
 }
 

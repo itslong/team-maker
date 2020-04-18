@@ -1,5 +1,11 @@
 /* @flow */
-import { PLAYERS_COUNT_INCREMENT, PLAYERS_COUNT_DECREMENT, UPDATE_PLAYERS_LIST } from '../constants/action-types';
+import {
+  PLAYERS_COUNT_INCREMENT,
+  PLAYERS_COUNT_DECREMENT,
+  UPDATE_PLAYERS_LIST,
+  INITIALIZE_PLAYERS_LIST
+} from '../constants/action-types';
+import { generateUsers } from '../utility/generateUsers';
 
 
 type CountIncrementAction = { type: typeof PLAYERS_COUNT_INCREMENT };
@@ -11,11 +17,34 @@ type Action =
   | CountIncrementAction
   | UpdatePlayersListAction;
 
+type Player = {
+  id: number,
+  username: string,
+  rating?: number
+};
 
-function updatePlayersList(): Action {
+type PlayersList = {
+  id: Player
+};
+
+function updatePlayersList(id: number): Action {
   return {
-    type: UPDATE_PLAYERS_LIST
-  }
+    type: UPDATE_PLAYERS_LIST,
+    playerId: id
+  };
+}
+
+function initializePlayersList(total: number): Action {
+  const createdUsers = generateUsers(total);
+  const users = createdUsers.reduce((usersById, currUser): PlayersList => {
+    usersById[currUser.id] = currUser;
+    return usersById;
+  }, {});
+
+  return {
+    type: INITIALIZE_PLAYERS_LIST,
+    playersList: users
+  };
 }
 
 function playersCountIncrement(): Action {
@@ -33,10 +62,13 @@ function playersCountDecrement(): Action {
 export {
   playersCountIncrement,
   playersCountDecrement,
-  updatePlayersList
+  updatePlayersList,
+  initializePlayersList
 };
 export type {
   CountIncrementAction,
   CountDecrementAction,
-  UpdatePlayersListAction
+  UpdatePlayersListAction,
+  Player,
+  PlayersList
 };

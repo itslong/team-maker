@@ -1,13 +1,14 @@
 /* @flow */
-import { PLAYERS_COUNT_INCREMENT, PLAYERS_COUNT_DECREMENT, UPDATE_PLAYERS_LIST } from '../constants/action-types';
+import {
+  PLAYERS_COUNT_INCREMENT,
+  PLAYERS_COUNT_DECREMENT,
+  UPDATE_PLAYERS_LIST,
+  UPDATE_TEAM_SETTINGS,
+  INITIALIZE_PLAYERS_LIST
+} from '../constants/action-types';
 import { CountIncrementAction, CountDecrementAction, UpdatePlayersListAction } from '../actions';
+import type { Player } from '../actions';
 
-
-type Player = {
-  id: number,
-  username: string,
-  rating?: number
-};
 
 type State = {
   playersCount: number,
@@ -43,10 +44,25 @@ function playersReducers(state: State = initialState, action: Action): State {
         playersCount: state.playersCount - 1
       }
 
-    case UPDATE_PLAYERS_LIST:
-      // TODO: remove player object by its ID.
+    case INITIALIZE_PLAYERS_LIST:
       return {
-        ...state
+        ...state,
+        playersList: action.playersList
+      }
+
+    case UPDATE_PLAYERS_LIST:
+      const playerId = parseInt(action.playerId);
+      const { [playerId]: _, ...remainder } = state.playersList;
+
+      return {
+        ...state,
+        playersList: remainder
+      }
+
+    case UPDATE_TEAM_SETTINGS:
+      return {
+        ...state,
+        playersCount: parseInt(action.teamSettings.totalPlayers)
       }
 
     default:

@@ -1,11 +1,11 @@
 .MainArea-container {
   display: grid;
-  width: 100vw;
-  height: 100vh;
-  grid-template-columns: auto auto auto;
+  height: calc(100vh - 20px);
+  min-height: 100%;
+  grid-template-columns: 33% 34% 33%;
 }
 
-.MainArea-container > div {
+.MainArea-container > div:nth-child(2) {
   border-width: 1px;
   border-color: black;
   border-left-style: solid;
