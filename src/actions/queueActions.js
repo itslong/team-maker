@@ -1,7 +1,7 @@
 /* @flow */
 import {
   ADD_PLAYER_TO_QUEUE,
-  RETURN_PLAYER_TO_LOBBY,
+  REMOVE_PLAYER_FROM_QUEUE,
   MOVE_PLAYER_TO_TEAM,
 } from '../constants/action-types';
 import type { Player } from './lobbyActions';
@@ -30,7 +30,7 @@ function returnPlayerToLobby(id: number): Action {
   Use when player decides to manually exit Queue or other conditions (ex: timeout). 
   */
   return {
-    type: RETURN_PLAYER_TO_LOBBY,
+    type: REMOVE_PLAYER_FROM_QUEUE,
     playerId: id
   };
 }

@@ -2,7 +2,7 @@
 import type { Player } from './lobbyReducers';
 import {
   ADD_PLAYER_TO_QUEUE,
-  RETURN_PLAYER_TO_LOBBY,
+  REMOVE_PLAYER_FROM_QUEUE,
   MOVE_PLAYER_TO_TEAM,
 } from '../constants/action-types';
 import type {
@@ -37,7 +37,7 @@ function queueReducers(state: State = initialState, action: Action): State {
         playersQueue: [...state.playersQueue, action.player]
       }
 
-    case RETURN_PLAYER_TO_LOBBY:
+    case REMOVE_PLAYER_FROM_QUEUE:
       const newState = state.playersQueue.filter((usersById) => usersById.id !== action.playerId);
 
       return {
