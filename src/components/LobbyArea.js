@@ -3,7 +3,7 @@ import React from 'react';
 import type { MixedElement } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { playersCountDecrement, updatePlayersList } from '../actions';
+import { playersCountDecrement, updatePlayersList, addPlayerToQueue } from '../actions';
 import PlayersList from './PlayersList';
 
 
@@ -16,9 +16,12 @@ function LobbyArea(): MixedElement {
 
   const updatePlayer = (e): null => {
     const playerId = parseInt(e.target.id);
+    const playerUsername = e.target.textContent;
+    const playerObj = {id: playerId, username: playerUsername};
     // NOTE: decrementing count and updating state is semi-redundant and could be combined into one call.
     dispatch(playersCountDecrement());
     dispatch(updatePlayersList(playerId));
+    dispatch(addPlayerToQueue(playerObj));
   };
 
   if(totalPlayers === 0 && playersCount === 0) {
