@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import PlayersList from './PlayersList';
-import { returnPlayerToLobby } from '../actions';
+import { returnPlayerToLobby, addPlayerToLobby } from '../actions';
 
 
 function QueueArea() {
@@ -14,8 +14,11 @@ function QueueArea() {
 
   const updatePlayer = (e) => {
     const playerId = parseInt(e.target.id);
-    
+    const playerUsername = e.target.textContent;
+    const playerObj = {id: playerId, username: playerUsername};
+
     dispatch(returnPlayerToLobby(playerId));
+    dispatch(addPlayerToLobby(playerObj));
   };
 
   return (
