@@ -1,21 +1,11 @@
 /* @flow */
 import {
-  PLAYERS_COUNT_INCREMENT,
-  PLAYERS_COUNT_DECREMENT,
-  UPDATE_PLAYERS_LIST,
+  ADD_PLAYER_TO_LOBBY,
+  REMOVE_PLAYER_FROM_LOBBY,
   INITIALIZE_PLAYERS_LIST
 } from '../constants/action-types';
 import { generateUsers } from '../utility/generateUsers';
 
-
-type CountIncrementAction = { type: typeof PLAYERS_COUNT_INCREMENT };
-type CountDecrementAction = { type: typeof PLAYERS_COUNT_DECREMENT };
-type UpdatePlayersListAction = { type: typeof UPDATE_PLAYERS_LIST };
-
-type Action = 
-  | CountDecrementAction
-  | CountIncrementAction
-  | UpdatePlayersListAction;
 
 type Player = {
   id: number,
@@ -27,9 +17,26 @@ type PlayersList = {
   id: Player
 };
 
-function updatePlayersList(id: number): Action {
+type AddPlayerAction = { type: typeof PLAYERS_COUNT_INCREMENT, player: Player };
+type RemovePlayerAction = { type: typeof PLAYERS_COUNT_DECREMENT, playerId: number };
+type InitLobbyWithPlayersAction = { type: typeof INITIALIZE_PLAYERS_LIST, playersList: PlayersList };
+
+type Action = 
+  | AddPlayerAction
+  | RemovePlayerAction
+  | InitLobbyWithPlayersAction;
+
+
+function addPlayerToLobby(player: Player): Action {
   return {
-    type: UPDATE_PLAYERS_LIST,
+    type: ADD_PLAYER_TO_LOBBY,
+    player
+  };
+}
+
+function removePlayerFromLobby(id: number): Action {
+  return {
+    type: REMOVE_PLAYER_FROM_LOBBY,
     playerId: id
   };
 }
@@ -43,32 +50,21 @@ function initializePlayersList(total: number): Action {
 
   return {
     type: INITIALIZE_PLAYERS_LIST,
-    playersList: users
+    playersList: users,
+    playersCount: total
   };
 }
 
-function playersCountIncrement(): Action {
-  return {
-    type: PLAYERS_COUNT_INCREMENT
-  };
-}
-
-function playersCountDecrement(): Action {
-  return {
-    type: PLAYERS_COUNT_DECREMENT
-  };
-}
 
 export {
-  playersCountIncrement,
-  playersCountDecrement,
-  updatePlayersList,
+  addPlayerToLobby,
+  removePlayerFromLobby,
   initializePlayersList
 };
 export type {
-  CountIncrementAction,
-  CountDecrementAction,
-  UpdatePlayersListAction,
   Player,
-  PlayersList
+  PlayersList,
+  AddPlayerAction,
+  RemovePlayerAction,
+  InitLobbyWithPlayersAction
 };

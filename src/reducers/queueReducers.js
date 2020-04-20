@@ -1,17 +1,13 @@
 /* @flow */
 import type { Player } from './lobbyReducers';
 import {
-  UPDATE_QUEUE_LIST,
-  RETURN_PLAYER_TO_LOBBY,
+  ADD_PLAYER_TO_QUEUE,
+  REMOVE_PLAYER_FROM_QUEUE,
   MOVE_PLAYER_TO_TEAM,
-  QUEUE_COUNT_INCREMENT,
-  QUEUE_COUNT_DECREMENT
 } from '../constants/action-types';
 import type {
   QueueList,
   ReturnPlayerToLobby,
-  QueueCountDecrement,
-  QueueCountIncrement,
   MovePlayerToTeam
 } from '../actions';
 
@@ -24,8 +20,6 @@ type State = {
 type Action = 
   | QueueList
   | ReturnPlayerToLobby
-  | QueueCountDecrement
-  | QueueCountIncrement
   | MovePlayerToTeam;
 
 
@@ -36,31 +30,25 @@ let initialState = {
 
 function queueReducers(state: State = initialState, action: Action): State {
   switch(action.type) {
-    case UPDATE_QUEUE_LIST:
+    case ADD_PLAYER_TO_QUEUE:
       return {
-        ...state
+        ...state,
+        queueCount: state.queueCount + 1,
+        playersQueue: [...state.playersQueue, action.player]
       }
 
-    case RETURN_PLAYER_TO_LOBBY:
+    case REMOVE_PLAYER_FROM_QUEUE:
+      const newState = state.playersQueue.filter((usersById) => usersById.id !== action.playerId);
+
       return {
-        ...state
+        ...state,
+        queueCount: state.queueCount - 1,
+        playersQueue: newState
       }
 
     case MOVE_PLAYER_TO_TEAM:
       return {
         ...state
-      }
-
-    case QUEUE_COUNT_DECREMENT:
-      return {
-        ...state,
-        queueCount: state.queueCount - 1
-      }
-
-    case QUEUE_COUNT_INCREMENT:
-      return {
-        ...state,
-        queueCount: state.queueCount + 1
       }
 
     default:

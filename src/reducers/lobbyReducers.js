@@ -1,13 +1,10 @@
 /* @flow */
 import {
-  PLAYERS_COUNT_INCREMENT,
-  PLAYERS_COUNT_DECREMENT,
-  UPDATE_PLAYERS_LIST,
-  UPDATE_TEAM_SETTINGS,
+  ADD_PLAYER_TO_LOBBY,
+  REMOVE_PLAYER_FROM_LOBBY,
   INITIALIZE_PLAYERS_LIST
 } from '../constants/action-types';
-import { CountIncrementAction, CountDecrementAction, UpdatePlayersListAction } from '../actions';
-import type { Player } from '../actions';
+import type { Player, AddPlayerAction, RemovePlayerAction, InitLobbyWithPlayersAction } from '../actions';
 
 
 type State = {
@@ -18,9 +15,10 @@ type State = {
 };
 
 type Action =
-  | CountDecrementAction
-  | CountIncrementAction
-  | UpdatePlayersListAction;
+  | AddPlayerAction
+  | RemovePlayerAction
+  | InitLobbyWithPlayersAction;
+
 
 let initialState: State = {
   playersCount: 0,
@@ -32,37 +30,29 @@ function lobbyReducers(state: State = initialState, action: Action): State {
     Keep track of player state as players leave and enter the queue, or exiting the queue.
   */
   switch(action.type) {
-    case PLAYERS_COUNT_INCREMENT:
-      return {
-        ...state,
-        playersCount: state.playersCount + 1
-      }
-
-    case PLAYERS_COUNT_DECREMENT:
-      return {
-        ...state,
-        playersCount: state.playersCount - 1
-      }
-
     case INITIALIZE_PLAYERS_LIST:
       return {
-        ...state,
-        playersList: action.playersList
+        playersList: action.playersList,
+        playersCount: action.playersCount
       }
 
-    case UPDATE_PLAYERS_LIST:
+    case REMOVE_PLAYER_FROM_LOBBY:
       const playerId = parseInt(action.playerId);
       const { [playerId]: _, ...remainder } = state.playersList;
 
       return {
-        ...state,
+        playersCount: state.playersCount - 1,
         playersList: remainder
       }
 
-    case UPDATE_TEAM_SETTINGS:
+    case ADD_PLAYER_TO_LOBBY:
+      const newPlayerObj = {
+        [action.player.id]: action.player
+      };
+
       return {
-        ...state,
-        playersCount: parseInt(action.teamSettings.totalPlayers)
+        playersCount: state.playersCount + 1,
+        playersList: {...state.playersList, ...newPlayerObj}
       }
 
     default:

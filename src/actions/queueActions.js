@@ -1,40 +1,37 @@
 /* @flow */
 import {
-  UPDATE_QUEUE_LIST,
-  RETURN_PLAYER_TO_LOBBY,
+  ADD_PLAYER_TO_QUEUE,
+  REMOVE_PLAYER_FROM_QUEUE,
   MOVE_PLAYER_TO_TEAM,
-  QUEUE_COUNT_INCREMENT,
-  QUEUE_COUNT_DECREMENT
 } from '../constants/action-types';
+import type { Player } from './lobbyActions';
 
 
 type QueueList = { type: typeof UPDATE_QUEUE_LIST };
 type ReturnPlayerToLobby = { type: typeof RETURN_PLAYER_TO_LOBBY };
-type QueueCountIncrement = { type: typeof QUEUE_COUNT_INCREMENT };
-type QueueCountDecrement = { type: typeof QUEUE_COUNT_DECREMENT };
 type MovePlayerToTeam = { type: typeof MOVE_PLAYER_TO_TEAM };
 
 type Action = 
   | QueueList
   | ReturnPlayerToLobby
-  | QueueCountDecrement
-  | QueueCountIncrement
   | MovePlayerToTeam;
 
 
-function updateQueueList(): Action {
+function addPlayerToQueue(player: Player): Action {
   return {
-    type: UPDATE_QUEUE_LIST
+    type: ADD_PLAYER_TO_QUEUE,
+    player
   };
 }
 
-function returnPlayerToLobby(): Action {
+function returnPlayerToLobby(id: number): Action {
   /*
   Move Player to Lobby Area. 
   Use when player decides to manually exit Queue or other conditions (ex: timeout). 
   */
   return {
-    type: RETURN_PLAYER_TO_LOBBY
+    type: REMOVE_PLAYER_FROM_QUEUE,
+    playerId: id
   };
 }
 
@@ -48,28 +45,13 @@ function movePlayerToTeam(): Action {
   };
 }
 
-function queueCountIncrement(): Action {
-  return {
-    type: QUEUE_COUNT_INCREMENT
-  };
-}
-
-function queueCountDecrement(): Action {
-  return {
-    type: QUEUE_COUNT_DECREMENT
-  };
-}
 
 export {
-  updateQueueList,
+  addPlayerToQueue,
   returnPlayerToLobby,
-  queueCountDecrement,
-  queueCountIncrement
 };
 export type {
   QueueList,
   ReturnPlayerToLobby,
-  QueueCountDecrement,
-  QueueCountIncrement,
   MovePlayerToTeam
 }
