@@ -12,10 +12,15 @@ type PlayersListProp = {
 
 function PlayersList({ players, handlePlayerOnClick }: PlayersListProp): MixedElement {
   return (
-      <ul onClick={handlePlayerOnClick} style={{ "listStyleType": "none", "display": "inline" }}>
+      <ul style={{ "listStyleType": "none", "display": "inline" }}>
         {Object.values(players).map(({id, username}: Player) => {
           return (
-            <li key={`${id + username}`} id={id}>{username}</li>
+            <li
+              key={`${id + username}`} 
+              id={id}
+              onClick={handlePlayerOnClick}>
+              {username}
+            </li>
           );
         })}
       </ul>
