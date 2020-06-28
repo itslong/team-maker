@@ -3,6 +3,7 @@ import {
   ADD_PLAYER_TO_QUEUE,
   REMOVE_PLAYER_FROM_QUEUE,
   MOVE_PLAYER_TO_TEAM,
+  TOGGLE_QUEUE_DIALOG,
 } from '../constants/action-types';
 import type { Player } from './lobbyActions';
 
@@ -45,10 +46,17 @@ function movePlayerToTeam(): Action {
   };
 }
 
+function toggleQueueDialog(dialogState: boolean) {
+  return {
+    type: TOGGLE_QUEUE_DIALOG,
+    isQueueDialogDisplayed: dialogState,
+  };
+}
 
 export {
   addPlayerToQueue,
   returnPlayerToLobby,
+  toggleQueueDialog,
 };
 export type {
   QueueList,

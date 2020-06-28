@@ -4,6 +4,7 @@ import {
   ADD_PLAYER_TO_QUEUE,
   REMOVE_PLAYER_FROM_QUEUE,
   MOVE_PLAYER_TO_TEAM,
+  TOGGLE_QUEUE_DIALOG,
 } from '../constants/action-types';
 import type {
   QueueList,
@@ -14,7 +15,9 @@ import type {
 
 type State = {
   playersQueue: Array<Player>,
-  queueCount: number
+  queueCount: number,
+  isQueueDialogDisplayed: boolean,
+  queueDialogId: number | null,
 };
 
 type Action = 
@@ -22,10 +25,12 @@ type Action =
   | ReturnPlayerToLobby
   | MovePlayerToTeam;
 
-
+// for now, dialog state is kept in Queue area. Should move to redux soon.
 let initialState = {
   playersQueue: [],
-  queueCount: 0
+  queueCount: 0,
+  isQueueDialogDisplayed: false,
+  queueDialogId: null
 };
 
 function queueReducers(state: State = initialState, action: Action): State {
@@ -49,6 +54,12 @@ function queueReducers(state: State = initialState, action: Action): State {
     case MOVE_PLAYER_TO_TEAM:
       return {
         ...state
+      }
+
+    case TOGGLE_QUEUE_DIALOG:
+      return {
+        ...state,
+        isQueueDialogDisplayed: action.isQueueDialogDisplayed,
       }
 
     default:
